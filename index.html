@@ -13,10 +13,34 @@
           position="0 0 0"
           scale="2 1 1"
           geometry="primitive: plane"
-          material="src: asset2.mp4"
-        ></a-entity>
+        >
+          <a-video
+            id="videoPlayer"
+            src="asset2.mp4"
+            width="2"
+            height="1"
+            autoplay="false"
+            loop="true"
+          ></a-video>
+        </a-entity>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
+
+    <script>
+      // JavaScript to control video playback
+      const videoElement = document.getElementById('videoPlayer');
+      const markerElement = document.querySelector('a-marker');
+
+      // Listen for the markerFound event
+      markerElement.addEventListener('markerFound', () => {
+        videoElement.play();
+      });
+
+      // Listen for the markerLost event
+      markerElement.addEventListener('markerLost', () => {
+        videoElement.pause();
+      });
+    </script>
   </body>
 </html>
